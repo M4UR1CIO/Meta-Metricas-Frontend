@@ -64,10 +64,6 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
     }
   };
 
-  const handleGuideClick = () => {
-    handlePlatformSelect('guia'); // Selección para la guía
-  };
-
   return (
     <>
       <button
@@ -84,7 +80,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 70, damping: 15 }}
-            className={`fixed md:relative md:top-0 md:left-0 h-screen w-[60%] sm:w-[30%] md:w-[260px] shadow-xl p-4 z-40 ${
+            className={`fixed md:relative md:top-0 md:left-0 h-screen w-[60%] sm:w-[30%] md:w-[220px] shadow-xl p-4 z-40 ${
               theme === 'dark'
                 ? 'bg-gradient-to-b from-purple-700 via-pink-700 to-blue-700 text-white'
                 : 'bg-gradient-to-b from-indigo-200 to-blue-300 text-gray-800'
@@ -128,14 +124,16 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
                 </div>
 
                 <div
-  onClick={() => handlePlatformSelect("reportes")} // Cambiar a "reportes"
-  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 ${
-    selectedPlatform === "reportes" ? "bg-green-100 text-green-800 font-semibold" : "hover:bg-white/20 text-white"
-  }`}
->
-  <FaChartBar className="mr-3" />
-  <span className="text-lg">Reportes</span>
-</div>
+                  onClick={() => handlePlatformSelect("reportes")} // Cambiar a "reportes"
+                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 ${
+                    selectedPlatform === "reportes" 
+                      ? "bg-green-100 text-green-800 font-semibold" 
+                      : "hover:bg-white/20 text-white"
+                  }`}
+                >
+                  <FaChartBar className="mr-3" />
+                  <span className="text-lg">Reportes</span>
+                </div>
 
               </div>
             </div>
@@ -143,13 +141,31 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
             {/* Bottom actions */}
             <div className="space-y-4 mt-12">
               <div
-                onClick={handleGuideClick}
-                className="flex items-center py-3 px-4 text-white cursor-pointer hover:bg-white/20 transition-all duration-500 rounded-full"
+                onClick={() => handlePlatformSelect("guia")}
+                className={`flex items-center py-2 px-4 rounded-3xl cursor-pointer transition-all duration-500 ${
+                  selectedPlatform === "guia"
+                    ? "bg-purple-200 text-gray-500 font-semibold"
+                    : "hover:bg-white/20 text-white"
+                }`}
               >
-                <FaBook className="mr-3" />
+                <FaBook className="mr-3 transition-all duration-0" />
                 <div>
-                  <span className="block font-semibold text-lg">Guía de uso</span>
-                  <span className="text-sm text-white/80">Documentación</span>
+                  {/* Sincroniza "Guía de uso" */}
+                  <span
+                    className={`block font-semibold text-lg transition-all duration-500 ${
+                      selectedPlatform === "guia" ? "text-gray-500" : "text-white"
+                    }`}
+                  >
+                    Guía de uso
+                  </span>
+                  {/* Sincroniza "Documentación" */}
+                  <span
+                    className={`text-mg transition-all duration-500 ${
+                      selectedPlatform === "guia" ? "text-gray-500" : "text-white/80"
+                    }`}
+                  >
+                    Documentación
+                  </span>
                 </div>
               </div>
 

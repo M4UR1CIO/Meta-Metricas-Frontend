@@ -7,15 +7,15 @@ import SeccionIG from './SeccionIG';
 import CerrarSesion from './cuenta/Sesion';
 import SidebarMenu from './menu/SidebarMenu';
 import Reporte from '../Reports/Reporte';
-import GuideContent from './GuideContent';
+import DocumentationPage from '../documentation/GuiaDeUso';
 import Chatbot from '../bot/Chatbot';
 import { DateProvider } from './calendario/DateContext';
 import DateRangePicker from './calendario/DateRangePicker';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
-  const [selectedSection, setSelectedSection] = useState<string>('metrics');
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>("guia");
+  const [selectedSection, setSelectedSection] = useState<string>("guia");
   const [isMetricsVisible, setIsMetricsVisible] = useState(false);
   const [username, setUsername] = useState<string>('');
   const [theme, setTheme] = useState<string>('light');
@@ -37,13 +37,16 @@ const Dashboard: React.FC = () => {
       const decodedPayload = JSON.parse(jsonPayload);
       setUsername(decodedPayload.sub);
 
-    const savedPlatform = Cookies.get('selected_platform');
-    if (savedPlatform) {
-        setSelectedPlatform(savedPlatform); // Sincronizar estado con la cookie
-        setSelectedSection(savedPlatform === 'reportes' ? 'reportes' : 'metrics');
-        setIsMetricsVisible(true);
-        
-    };
+      const savedPlatform = Cookies.get("selected_platform") || "guia";
+      setSelectedPlatform(savedPlatform);
+      setSelectedSection(
+        savedPlatform === "reportes"
+          ? "reportes"
+          : savedPlatform === "guia"
+          ? "guia"
+          : "metrics"
+      );
+      setIsMetricsVisible(savedPlatform !== "guia");
     }
     
     const savedTheme = localStorage.getItem('theme');
@@ -54,6 +57,7 @@ const Dashboard: React.FC = () => {
 
     // Leer la cookie `selected_page` para establecer la página seleccionada
     const selectedPageId = Cookies.get('Plataforma_Select');
+    
     if (selectedPageId) {
       const pageCookieKey = `selected_page_${selectedPageId}`; 
       const pageData = Cookies.get(pageCookieKey);
@@ -120,12 +124,20 @@ const Dashboard: React.FC = () => {
       <DateProvider>
         <div className={`min-h-screen flex ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gradient-to-r from-blue-50 to-indigo-50'}`}>
 
-        <SidebarMenu onPlatformSelect={handlePlatformSelect} theme={theme} selectedPlatform={selectedPlatform} />
+        <div className="fixed top-0 left-0 h-screen w-68 bg-white">
+          <SidebarMenu
+            onPlatformSelect={handlePlatformSelect}
+            theme={theme}
+            selectedPlatform={selectedPlatform}
+          />
+        </div>
 
-          <div className="flex-grow w-full p-4 space-y-6">
+
+        <div className="flex-grow ml-0 md:ml-56 overflow-y-auto">
+          <div className="p-4 space-y-6">
+            {/* Encabezado */}
             <div className="flex items-center justify-between mb-4 w-full">
-
-                <div className="flex-grow text-lg md:text-2xl font-semibold text-center md:text-left hidden sm:block">
+              <div className="text-lg md:text-2xl font-semibold text-center md:text-left hidden sm:block">
                   {selectedPage ? `${selectedPage.page_name}` : "Selecciona una Página"}
                 </div>
                 
@@ -152,18 +164,22 @@ const Dashboard: React.FC = () => {
               </motion.div>
             )}
 
-            {selectedSection === 'guia' && (
+            {selectedSection === "guia" && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`shadow-lg rounded-lg p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} w-full`}
+                className={`shadow-lg rounded-lg p-4 ${
+                  theme === "dark" ? "bg-gray-800" : "bg-white"
+                } w-full`}
               >
-                <GuideContent />
+                <DocumentationPage />
               </motion.div>
             )}
+
         </div>
         <Chatbot onNavigateCommand={handleNavigateCommand} />
+      </div>
       </div>
     </DateProvider>
   );

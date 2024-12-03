@@ -50,7 +50,7 @@ const Cuenta: React.FC<CuentaProps> = ({ username, toggleTheme, theme, setSelect
   };
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-30">
       <div
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         className={`flex items-center space-x-2 cursor-pointer ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'} rounded-lg p-2 shadow-md`}
