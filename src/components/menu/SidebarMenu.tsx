@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaBook, FaSignOutAlt, FaChartBar, FaBars } from 'react-icons/fa';
 import { FacebookPage } from '../../types/metricsTypes';
+import { SiMeta } from 'react-icons/si';
 
 interface SidebarMenuProps {
   onPlatformSelect: (platform: string) => void;
@@ -68,7 +69,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
     <>
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed top-5 left-2 z-50 md:hidden text-white bg-blue-500 p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+        className="fixed top-5 left-2 z-50 md:hidden text-white bg-black p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
       >
         <FaBars />
       </button>
@@ -94,44 +95,45 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
             }}
           >
             <div>
-              <div className="text-2xl font-bold py-4 flex items-center justify-center opacity-90 text-white mb-8">
-                Meta
+              <div className="font-bold py-4 flex items-center justify-center opacity-90 text-white mb-8">
+                <span className="text-2xl">Meta</span>
+                <SiMeta className="ml-2 text-white text-2xl" />
               </div>
 
               <div className="space-y-4">
                 <div
                   onClick={() => handlePlatformSelect('facebook')}
-                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 ${
+                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 hover:scale-105 ${
                     selectedPlatform === 'facebook'
                       ? 'bg-blue-100 text-blue-800 font-semibold'
                       : 'hover:bg-white/20 text-white'
                   }`}
                 >
-                  <FaFacebook className="mr-3" />
+                  <FaFacebook className="mr-3 text-2xl" />
                   <span className="text-lg">Facebook</span>
                 </div>
 
                 <div
                   onClick={() => handlePlatformSelect('instagram')}
-                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 ${
+                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 hover:scale-105 ${
                     selectedPlatform === 'instagram'
                       ? 'bg-pink-100 text-pink-800 font-semibold'
                       : 'hover:bg-white/20 text-white'
                   }`}
                 >
-                  <FaInstagram className="mr-3" />
+                  <FaInstagram className="mr-3 text-2xl" />
                   <span className="text-lg">Instagram</span>
                 </div>
 
                 <div
                   onClick={() => handlePlatformSelect("reportes")} // Cambiar a "reportes"
-                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 ${
+                  className={`flex items-center py-2 px-4 rounded-full cursor-pointer transition-all duration-500 hover:scale-105 ${
                     selectedPlatform === "reportes" 
                       ? "bg-green-100 text-green-800 font-semibold" 
                       : "hover:bg-white/20 text-white"
                   }`}
                 >
-                  <FaChartBar className="mr-3" />
+                  <FaChartBar className="mr-3 text-2xl" />
                   <span className="text-lg">Reportes</span>
                 </div>
 
@@ -142,13 +144,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
             <div className="space-y-4 mt-12">
               <div
                 onClick={() => handlePlatformSelect("guia")}
-                className={`flex items-center py-2 px-4 rounded-3xl cursor-pointer transition-all duration-500 ${
+                className={`flex items-center py-2 px-4 rounded-3xl cursor-pointer transition-all duration-500 hover:scale-105 ${
                   selectedPlatform === "guia"
                     ? "bg-purple-200 text-gray-500 font-semibold"
                     : "hover:bg-white/20 text-white"
                 }`}
               >
-                <FaBook className="mr-3 transition-all duration-0" />
+                <FaBook className="mr-3 transition-all duration-0 text-xl" />
                 <div>
                   {/* Sincroniza "Guía de uso" */}
                   <span

@@ -129,15 +129,16 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateCommand }) => {
     <div className="fixed bottom-4 right-4 z-50" ref={botRef}>
       {!isChatOpen && (
         <div onClick={toggleChat} className="cursor-pointer">
-          <dotlottie-player
-            src="https://lottie.host/6fc6e379-bedd-4f36-980f-5876f4f40ffd/RMlXseo8g9.json"
-            background="transparent"
-            speed={1}
-            style={{ width: '165px', height: '165px' }}
-            loop
-            autoplay
-          ></dotlottie-player>
-        </div>
+        <dotlottie-player
+          src="https://lottie.host/6fc6e379-bedd-4f36-980f-5876f4f40ffd/RMlXseo8g9.json"
+          background="transparent"
+          speed={1}
+          style={{ width: '120px', height: '120px' }} // Tamaño por defecto (celular)
+          className="md:w-[150px] md:h-[150px]"
+          loop
+          autoplay
+        ></dotlottie-player>
+      </div>
       )}
 
       <Transition
@@ -153,7 +154,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateCommand }) => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', duration: 0.8 }}
-          className="w-[400px] h-[600px] bg-white rounded-lg shadow-lg overflow-hidden chatbot-container"
+          className="w-[320px] h-[560px] sm:w-[360px] sm:h-[560px] bg-white rounded-lg shadow-lg overflow-hidden chatbot-container"
         >
           <div className="flex items-center justify-between p-4 bg-blue-600 text-white cursor-pointer">
             <div className="flex items-center">
@@ -176,49 +177,50 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateCommand }) => {
           </div>
 
           <div ref={chatContainerRef} className="flex-1 p-4 h-[400px] overflow-y-auto bg-gray-100">
-  {messages.map((message, index) => (
-    <motion.div
-      key={index}
-      className={`message flex items-start mb-4 ${
-        message.sender === 'bot' ? 'justify-start' : 'justify-end'
-      }`}
-      custom={{ sender: message.sender }}
-      initial="hidden"
-      animate="visible"
-      variants={messageVariants}
-    >
-      <div
-        className={`p-3 max-w-xs rounded-lg text-sm ${
-          message.sender === 'bot' ? 'bg-white text-gray-900 shadow-md' : 'bg-blue-500 text-white shadow-md'
-        }`}
-      >
-        {message.text}
-      </div>
-    </motion.div>
-  ))}
+            {messages.map((message, index) => (
+              <motion.div
+                key={index}
+                className={`message flex items-start mb-4 ${
+                  message.sender === 'bot' ? 'justify-start' : 'justify-end'
+                }`}
+                custom={{ sender: message.sender }}
+                initial="hidden"
+                animate="visible"
+                variants={messageVariants}
+              >
+                <div
+                  className={`p-3 max-w-xs rounded-2xl text-sm ${
+                    message.sender === 'bot' ? 'bg-white text-gray-900 shadow-md' : 'bg-blue-500 text-white shadow-md'
+                  }`}
+                >
+                  {message.text}
+                </div>
+              </motion.div>
+            ))}
 
-  {loading && (
-    <motion.div
-      className="message flex justify-start mb-4 text-gray-400"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
-    >
-      {getRandomSkeletonMessage()}
-    </motion.div>
-  )}
-</div>
+            {loading && (
+              <motion.div
+                className="message flex justify-start mb-4 text-gray-400"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
+              >
+                {getRandomSkeletonMessage()}
+              </motion.div>
+            )}
+          </div>
 
           <div className="flex items-center p-4 bg-white border-t border-gray-200">
-            <input
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              onKeyDown={handleKeyPress}
-              className="flex-1 p-3 text-sm border-none focus:outline-none bg-gray-100 rounded-lg"
-              placeholder="Escribe un mensaje..."
-              disabled={loading}
-            />
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+            className="flex-1 p-3 text-sm text-gray-800 placeholder-gray-400 border-none focus:outline-none bg-gray-100 rounded-lg"
+            placeholder="Escribe un mensaje..."
+            disabled={loading}
+          />
+
             <button onClick={handleSendMessage} className="ml-3 p-3 bg-blue-600 text-white rounded-full shadow-lg" disabled={loading}>
               {loading ? 'Cargando...' : 'Enviar'}
             </button>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FacebookPage } from '../../types/metricsTypes';
 import { motion, AnimatePresence } from 'framer-motion';
 import ActualizarCuenta from '../ActualizarCuenta';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
 interface CuentaProps {
   username: string;
@@ -86,19 +87,22 @@ const Cuenta: React.FC<CuentaProps> = ({ username, toggleTheme, theme, setSelect
             {facebookPages.map((page) => (
               <motion.li
                 key={page.id}
-                className="flex items-center space-x-3 cursor-pointer px-4 py-2 rounded-lg transition duration-300 hover:bg-gray-100"
+                className="flex items-center space-x-3 cursor-pointer px-4 py-2 rounded-lg transition duration-300 hover:bg-gray-200"
                 onClick={() => handlePageSelect(page)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.06 }}
               >
                 <img src={page.picture} alt={page.name} className="w-8 h-8 rounded-full" />
                 <span className="text-sm font-medium">{page.name}</span>
               </motion.li>
             ))}
             <li
-              className="cursor-pointer px-4 py-2 rounded-lg transition duration-300 hover:bg-gray-100"
+              className="cursor-pointer flex items-center px-4 py-2 rounded-lg hover:bg-gray-200 transition duration-300 hover:scale-105"
               onClick={() => setMostrarActualizarCuenta(true)}
+              
+              
             >
-              Actualizar Cuenta
+              <ArrowPathIcon className="h-5 w-5 text-gray-500 mr-4" />
+              <span>Actualizar Cuenta</span>
             </li>
             <li>
               <a onClick={toggleTheme} className="flex items-center space-x-2 mt-4 cursor-pointer">

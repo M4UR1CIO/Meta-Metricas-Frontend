@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import ReportSkeleton from '../components/Skeletons/ReportSkeleton';
 import Cookies from 'js-cookie';
 import { MetricsData, MetricsData_ig } from '../types/metricsTypes';
 import { Canvg } from 'canvg';
@@ -245,138 +244,134 @@ const Reporte: React.FC<ReporteProps> = ({ selectedPage, theme }) => {
   }
 };
 
-  const renderMetrics = () => {
-    return (
-      <>
-        {/* Métricas de Facebook */}
-        {facebookMetrics && !loading ? (
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Resumen de FACEBOOK</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Me gusta</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Me gusta']} Me gusta</h2>
-              </div>
+const renderMetrics = () => {
+  if (loading) { return <ReportSkeleton />;}
 
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Seguidores</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Seguidores']} Seguidores</h2>
-              </div>
+  return (
+    <>
+      {/* Métricas de Facebook */}
+      {facebookMetrics && (
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Resumen de FACEBOOK</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Me gusta</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Me gusta']} Me gusta</h2>
+            </div>
 
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Impresiones</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Impresiones']} Impresiones</h2>
-              </div>
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Seguidores</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Seguidores']} Seguidores</h2>
+            </div>
 
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Visitas a la Página</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Visitas a la Página']} Visitas</h2>
-              </div>
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Impresiones</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Impresiones']} Impresiones</h2>
+            </div>
 
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Alcance</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Alcance']} Alcance</h2>
-              </div>
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Visitas a la Página</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Visitas a la Página']} Visitas</h2>
+            </div>
 
-              <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Publicaciones</p>
-                <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Publicaciones']} Publicaciones</h2>
-              </div>
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Alcance</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Alcance']} Alcance</h2>
+            </div>
+
+            <div className={`p-4 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Publicaciones</p>
+              <h2 className="text-2xl font-bold">{facebookMetrics.Totales['Total de Publicaciones']} Publicaciones</h2>
             </div>
           </div>
-          ) : (
-            <Skeleton count={6} height={100} />
-        )}
+        </div>
+      )}
 
-        {/* Métricas de Instagram */}
-        {instagramMetrics && !loading ? (
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Resumen de INSTAGRAM</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              
-              <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Seguidores</p>
-                <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Seguidores']} Seguidores</h2>
-              </div>
-              
-              <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Impresiones</p>
-                <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Impresiones']} Impresiones</h2>
-              </div>
-
-              <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Alcance</p>
-                <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Alcance']} Alcance</h2>
-              </div>
-
-              <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Publicaciones</p>
-                <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Publicaciones']} Publicaciones</h2>
-              </div>
-
-              <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center`}>
-                <p className="text-gray-500">Total de Nuevos Seguidores</p>
-                <h2 className="text-2xl font-bold">{totalSeguidoresGanados !== null ? `${totalSeguidoresGanados} Seguidores` : <Skeleton width={50} />}</h2>
+      {/* Métricas de Instagram */}
+      {instagramMetrics && (
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Resumen de INSTAGRAM</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Seguidores</p>
+              <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Seguidores']} Seguidores</h2>
             </div>
+
+            <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Impresiones</p>
+              <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Impresiones']} Impresiones</h2>
+            </div>
+
+            <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Alcance</p>
+              <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Alcance']} Alcance</h2>
+            </div>
+
+            <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Publicaciones</p>
+              <h2 className="text-2xl font-bold">{instagramMetrics.Totales['Total de Publicaciones']} Publicaciones</h2>
+            </div>
+
+            <div className={`p-4 ${theme === 'dark' ? 'bg-pink-700' : 'bg-blue-100'} shadow rounded-lg text-center transition hover:scale-105`}>
+              <p className="text-gray-500">Total de Nuevos Seguidores</p>
+              <h2 className="text-2xl font-bold">{totalSeguidoresGanados !== null ? `${totalSeguidoresGanados} Seguidores` : 'N/A'}</h2>
             </div>
           </div>
-        ) : (
-          <Skeleton count={6} height={100} />
-        )}
-      </>
-    );
-  };
+        </div>
+      )}
+    </>
+  );
+};
+
 
   return (
     <div className={`p-8 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'} min-h-screen`}>
-      <div className="max-w-6xl mx-auto" id="reporte-content">
-        <div className="mb-6">
-          <h1 className="text-3xl font-semibold">Reportes</h1>
-          <p className="text-gray-500">Inicio / Reportes</p>
-        </div>
-
-        <div className="mb-6">
-          {loading ? (
-            <Skeleton width={200} height={50} />
-          ) : (
+      {loading ? (
+        // Mostrar ReportSkeleton mientras los datos están cargando
+        <ReportSkeleton />
+      ) : (
+        // Mostrar contenido principal cuando los datos están disponibles
+        <div className="max-w-6xl mx-auto" id="reporte-content">
+          {/* Título y ruta */}
+          <div className="mb-6">
+            <h1 className="text-3xl font-semibold">Reportes</h1>
+            <p className="text-gray-500">Inicio / Reportes</p>
+          </div>
+  
+          {/* Botones de descarga */}
+          <div className="mb-5">
             <button
               onClick={() => descargarReporte('pdf')} // Descargar PDF
-              className="flex items-center space-x-2 bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition"
+              className="flex items-center space-x-2 bg-indigo-500 text-white px-6 py-3 rounded-2xl hover:bg-indigo-600 transition hover:scale-105"
             >
               <HiOutlineDocumentReport className="text-2xl" />
-              <span className="text-lg font-medium">Descargar Reporte en PDF</span>
+              <span className="text-lg font-medium ">Descargar Reporte en PDF</span>
             </button>
-          )}
-        </div>
-
-        <div className="mb-7">
-         {loading ? (
-            <Skeleton width={200} height={50} />
-          ) : (
-          <button
-            onClick={() => descargarReporte('word')} // Descargar Word
-            className="flex items-center space-x-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition"
-          >
-            <HiOutlineDocumentReport className="text-2xl" />
-            <span className="text-lg font-medium">Descargar Reporte en Word</span>
-          </button>
-          )}
-        </div>
-
-        {error && (
-          <div className="mb-6 p-4 bg-red-100 text-red-700 rounded">
-            {error}
           </div>
-        )}
-
-        {/* Sección de métricas */}
-        {loading && !facebookMetrics && !instagramMetrics ? (
-          <Skeleton count={6} height={100} />
-        ) : (
-          renderMetrics()
-        )}
-
-      </div>
+  
+          <div className="mb-5">
+            <button
+              onClick={() => descargarReporte('word')} // Descargar Word
+              className="flex items-center space-x-2 bg-green-500 text-white px-6 py-3 rounded-2xl hover:bg-green-600 transition hover:scale-105"
+            >
+              <HiOutlineDocumentReport className="text-2xl" />
+              <span className="text-lg font-medium">Descargar Reporte en Word</span>
+            </button>
+          </div>
+  
+          {/* Mensaje de error, si lo hay */}
+          {error && (
+            <div className="mb-6 p-4 bg-red-100 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+  
+          {/* Sección de métricas */}
+          {renderMetrics()}
+        </div>
+      )}
+  
+      {/* Gráficos ocultos para procesamiento */}
       <div
         id="hidden-graphs"
         style={{
@@ -415,6 +410,7 @@ const Reporte: React.FC<ReporteProps> = ({ selectedPage, theme }) => {
       </div>
     </div>
   );
+  
 };
 
 export default Reporte;

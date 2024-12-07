@@ -12,7 +12,7 @@ import { FaThumbsUp, FaEye, FaGlobe } from "react-icons/fa";
 import { MdBarChart } from "react-icons/md";
 import { IoMdPlay } from "react-icons/io";
 import { AiOutlineFileText } from "react-icons/ai";
-import FacebookSkeleton from "./Skeleton";
+import FacebookSkeleton from "./Skeletons/Skeleton";
 
 interface SeccionFBProps {
   theme: string;

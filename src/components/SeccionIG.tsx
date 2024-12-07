@@ -13,7 +13,7 @@ import { MdBarChart } from "react-icons/md";
 import { AiOutlineFileText } from "react-icons/ai";
 import { IoMdEye } from "react-icons/io";
 import { FaUserFriends, FaGlobe } from "react-icons/fa";
-import SectionSkeleton from "./Skeleton";
+import SectionSkeleton from "./Skeletons/Skeleton";
 
 interface SeccionIGProps {
   theme: string;
