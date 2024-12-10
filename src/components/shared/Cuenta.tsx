@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { FacebookPage } from '../../types/metricsTypes';
 import { motion, AnimatePresence } from 'framer-motion';
-import ActualizarCuenta from '../ActualizarCuenta';
+import ActualizarCuenta from './ActualizarCuenta';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
 interface CuentaProps {

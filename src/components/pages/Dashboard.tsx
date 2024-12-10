@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SeccionFB from './SeccionFB';
 import SeccionIG from './SeccionIG';
-import CerrarSesion from './cuenta/Sesion';
-import SidebarMenu from './menu/SidebarMenu';
-import Reporte from '../Reports/Reporte';
-import DocumentationPage from '../documentation/GuiaDeUso';
-import Chatbot from '../bot/Chatbot';
-import { DateProvider } from './calendario/DateContext';
-import DateRangePicker from './calendario/DateRangePicker';
-import ToastError from './toast/Toast';
-import { showToastError } from './toast/toastUtils';
+import CerrarSesion from '../shared/Cuenta';
+import SidebarMenu from '../menu/SidebarMenu';
+import Reporte from '../../Reports/Reporte';
+import DocumentationPage from '../../documentation/GuiaDeUso';
+import Chatbot from '../../bot/Chatbot';
+import { DateProvider } from '../calendario/DateContext';
+import DateRangePicker from '../calendario/DateRangePicker';
+import ToastError from '../toast/Toast';
+import { showToastError } from '../toast/toastUtils';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();

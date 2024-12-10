@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register'; // Importa el componente de registro
-import Dashboard from './components/Dashboard';
+import Login from './components/pages/Login';
+import Register from './components/pages/Register'; // Importa el componente de registro
+import Dashboard from './components/pages/Dashboard';
 import Error404 from './components/404/Error404';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Cookies from 'js-cookie';

@@ -98,7 +98,7 @@ const MetricsButtons_ig: React.FC<MetricsButtonsProps> = ({ selectedPageId, onLo
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full animate-fadeIn">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 w-full animate-fadeIn">
       <div className="p-4 w-full h-20 rounded-3xl bg-blue-100 shadow-sm flex justify-between items-center transition-transform transform hover:scale-105">
         <div className="flex flex-col justify-center">
           <h3 className="text-xl font-medium text-gray-700">Contenido Total</h3>

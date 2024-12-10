@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import MetricsButtons from "./buttons/MetricsButtons";
-import LikePaginaGrafico from "./grafico/Facebook/LikePaginaGrafico";
-import AlcanceGrafico from "./grafico/Facebook/AlcanceGrafico";
-import VisitasGrafico from "./grafico/Facebook/VisitasGrafico";
-import PublicacionesGrafico from "./grafico/Facebook/PublicacionesGrafico";
-import VideoGrafico from "./grafico/Facebook/VideoGrafico";
-import Video30sGrafico from "./grafico/Facebook/Video30sGrafico";
-import CountryGraph from "./grafico/Facebook/PaisGrafico";
+import MetricsButtons from "../buttons/MetricsButtons";
+import LikePaginaGrafico from "../charts/Facebook/LikePaginaGrafico";
+import AlcanceGrafico from "../charts/Facebook/AlcanceGrafico";
+import VisitasGrafico from "../charts/Facebook/VisitasGrafico";
+import PublicacionesGrafico from "../charts/Facebook/PublicacionesGrafico";
+import VideoGrafico from "../charts/Facebook/VideoGrafico";
+import Video30sGrafico from "../charts/Facebook/Video30sGrafico";
+import CountryGraph from "../charts/Facebook/PaisGrafico";
 import { FaThumbsUp, FaEye, FaGlobe } from "react-icons/fa";
 import { MdBarChart } from "react-icons/md";
 import { IoMdPlay } from "react-icons/io";
 import { AiOutlineFileText } from "react-icons/ai";
-import FacebookSkeleton from "./Skeletons/Skeleton";
+import FacebookSkeleton from "../skeletons/Skeleton";
 
 interface SeccionFBProps {
   theme: string;
@@ -137,37 +137,26 @@ const SeccionFB: React.FC<SeccionFBProps> = ({ theme, selectedPage }) => {
 
         {/* Gráficos */}
         <div className="grid grid-cols-1 gap-4 items-center w-full">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="col-span-1 md:col-span-2 lg:col-span-3 shadow-lg rounded-lg p-4 w-full"
-          >
-            <>
-              {selectedGraph === "Me gusta (Pagina)" && (
-                <LikePaginaGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Alcance" && (
-                <AlcanceGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Visitas" && (
-                <VisitasGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Publicaciones" && (
-                <PublicacionesGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Reproducciones" && (
-                <VideoGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Demografia" && (
-                <CountryGraph page_id={selectedPage.page_id} />
-              )}
-              {selectedGraph === "Reproducciones 30s" && (
-                <Video30sGrafico theme={theme} page_id={selectedPage.page_id} />
-              )}
-            </>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="col-span-1 shadow-lg rounded-lg w-full max-w-full p-0"
+        >
+          <div className="w-full max-w-full ml-0 mb-4">
+            {/* Renderización condicional de gráficos */}
+            {selectedGraph === "Me gusta (Pagina)" && (<LikePaginaGrafico theme={theme} page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Alcance" && (<AlcanceGrafico theme={theme} page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Visitas" && (<VisitasGrafico theme={theme} page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Publicaciones" && (<PublicacionesGrafico theme={theme} page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Reproducciones" && (<VideoGrafico theme={theme} page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Demografia" && (<CountryGraph page_id={selectedPage.page_id} />)}
+            {selectedGraph === "Reproducciones 30s" && (<Video30sGrafico theme={theme} page_id={selectedPage.page_id} />)}
+          </div>
+        </motion.div>
+
         </div>
+
       </div>
     </div>
   );

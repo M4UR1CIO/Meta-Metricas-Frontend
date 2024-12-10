@@ -178,7 +178,7 @@ const Login: React.FC = () => {
             <div className="modal-box text-center">
               <div className="flex flex-col justify-center items-center">
                 <img
-                  src="/src/images/bienvenido.png"
+                  src="/src/assets/images/bienvenido.png"
                   alt="Welcome"
                   className={`w-32 h-32 ${isImageLoaded ? "block" : "hidden"}`}
                   onLoad={handleImageLoad}

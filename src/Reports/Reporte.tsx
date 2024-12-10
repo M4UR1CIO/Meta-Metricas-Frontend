@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
-import ReportSkeleton from '../components/Skeletons/ReportSkeleton';
+import ReportSkeleton from '../components/skeletons/ReportSkeleton';
 import Cookies from 'js-cookie';
 import { MetricsData, MetricsData_ig } from '../types/metricsTypes';
 import { Canvg } from 'canvg';
-import AlcanceGrafico from '../components/grafico/Facebook/AlcanceGrafico';
-import AlcanceGraficoIg from '../components/grafico/Instagram/AlcanceGraficoIg';
-import VisitasGrafico from '../components/grafico/Facebook/VisitasGrafico';
-import PublicacionesGrafico from '../components/grafico/Facebook/PublicacionesGrafico';
-import PublicacionesGraficoIg from '../components/grafico/Instagram/PublicacionesGraficoIg';
-import VideoGrafico from '../components/grafico/Facebook/VideoGrafico';
-import Video30sGrafico from '../components/grafico/Facebook/Video30sGrafico';
+import AlcanceGrafico from '../components/charts/Facebook/AlcanceGrafico';
+import AlcanceGraficoIg from '../components/charts/Instagram/AlcanceGraficoIg';
+import VisitasGrafico from '../components/charts/Facebook/VisitasGrafico';
+import PublicacionesGrafico from '../components/charts/Facebook/PublicacionesGrafico';
+import PublicacionesGraficoIg from '../components/charts/Instagram/PublicacionesGraficoIg';
+import VideoGrafico from '../components/charts/Facebook/VideoGrafico';
+import Video30sGrafico from '../components/charts/Facebook/Video30sGrafico';
 import { useDateContext } from '../components/calendario/useDateContext';
-import CombinedTopReachPostsTable from '../components/grafico/Instagram/TopGraficReach';
+import CombinedTopReachPostsTable from '../components/charts/Instagram/TopGraficReach';
 import { toPng } from "html-to-image";
 
 interface ReporteProps {

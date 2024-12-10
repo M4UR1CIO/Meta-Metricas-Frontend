@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import MetricsButtons_ig from "./buttons/MetricsButtonsIg";
-import AlcanceGraficoIg from "./grafico/Instagram/AlcanceGraficoIg";
-import PublicacionesGraficoIg from "./grafico/Instagram/PublicacionesGraficoIg";
-import ImpresionesGraficoIg from "./grafico/Instagram/ImpresionesGraficoIg";
-import CombinedTopReachPostsTable from "./grafico/Instagram/TopGraficReach";
-import GenderGraphIg from "./grafico/Instagram/GeneroGrafico";
-import EdadGraficoIg from "./grafico/Instagram/EdadGraficoIg";
-import CityGraphIg from "./grafico/Instagram/CiudadGraficoIg";
-import CountryGraphIg from "./grafico/Instagram/PaisGraficoIg";
+import MetricsButtons_ig from "../buttons/MetricsButtonsIg";
+import AlcanceGraficoIg from "../charts/Instagram/AlcanceGraficoIg";
+import PublicacionesGraficoIg from "../charts/Instagram/PublicacionesGraficoIg";
+import ImpresionesGraficoIg from "../charts/Instagram/ImpresionesGraficoIg";
+import CombinedTopReachPostsTable from "../charts/Instagram/TopGraficReach";
+import GenderGraphIg from "../charts/Instagram/GeneroGrafico";
+import EdadGraficoIg from "../charts/Instagram/EdadGraficoIg";
+import CityGraphIg from "../charts/Instagram/CiudadGraficoIg";
+import CountryGraphIg from "../charts/Instagram/PaisGraficoIg";
 import { MdBarChart } from "react-icons/md";
 import { AiOutlineFileText } from "react-icons/ai";
 import { IoMdEye } from "react-icons/io";
 import { FaUserFriends, FaGlobe } from "react-icons/fa";
-import SectionSkeleton from "./Skeletons/Skeleton";
+import SectionSkeleton from "../skeletons/Skeleton";
 
 interface SeccionIGProps {
   theme: string;
@@ -130,21 +130,15 @@ const SeccionIG: React.FC<SeccionIGProps> = ({ theme, selectedPage }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-1 md:col-span-2 lg:col-span-3 shadow-lg rounded-lg p-4 w-full"
+          className="col-span-1 shadow-lg rounded-lg w-full max-w-full p-0"
         >
+          <div className="w-full max-w-full ml-0 mb-4">
           {selectedGraph === "Alcance" && (<AlcanceGraficoIg theme={theme} page_id={selectedPage.page_id} />)}
           {selectedGraph === "Publicaciones" && (<PublicacionesGraficoIg theme={theme} page_id={selectedPage.page_id} />)}
           {selectedGraph === "Top 5 Publicaciones" && (<CombinedTopReachPostsTable theme={theme} page_id={selectedPage.page_id}/>)}
           {selectedGraph === "Impresiones" && (<ImpresionesGraficoIg theme={theme} page_id={selectedPage.page_id} />)}
           {selectedGraph === "Datos Demograficos" && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                gap: "20px",
-                flexWrap: "wrap",
-              }}
-            >
+            <div style={{display: "flex",justifyContent: "space-between",gap: "20px",flexWrap: "wrap",}}>
               <div style={{ flex: 1, minWidth: "300px" }}>
                 <GenderGraphIg page_id={selectedPage.page_id} />
               </div>
@@ -154,14 +148,7 @@ const SeccionIG: React.FC<SeccionIGProps> = ({ theme, selectedPage }) => {
             </div>
           )}
           {selectedGraph === "Localizacion Demografica" && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                gap: "20px",
-                flexWrap: "wrap",
-              }}
-            >
+            <div style={{display: "flex",justifyContent: "space-between",gap: "20px",flexWrap: "wrap",}}>
               <div style={{ flex: 1, minWidth: "300px" }}>
                 <CityGraphIg page_id={selectedPage.page_id} />
               </div>
@@ -170,6 +157,7 @@ const SeccionIG: React.FC<SeccionIGProps> = ({ theme, selectedPage }) => {
               </div>
             </div>
           )}
+          </div>
         </motion.div>
       </div>
     </div>
