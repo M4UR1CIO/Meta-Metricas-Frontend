@@ -7,7 +7,7 @@ import SeccionIG from './SeccionIG';
 import CerrarSesion from '../shared/Cuenta';
 import SidebarMenu from '../menu/SidebarMenu';
 import Reporte from '../../Reports/Reporte';
-import DocumentationPage from '../../documentation/GuiaDeUso';
+import DocumentationPage from './GuiaDeUso';
 import Chatbot from '../../bot/Chatbot';
 import { DateProvider } from '../calendario/DateContext';
 import DateRangePicker from '../calendario/DateRangePicker';

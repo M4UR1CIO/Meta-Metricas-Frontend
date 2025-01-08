@@ -39,7 +39,7 @@ const DocumentationPage: React.FC<DocumentationPageProps> = ({ onGuideComplete }
             onClick={handleFinishGuide}
             className="mt-8 px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
           >
-            Dame click pa guardar tus cookies UwU
+            Dame click si entendiste la Guía de Uso
           </button>
         </div>
       </section>

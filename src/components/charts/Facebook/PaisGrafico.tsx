@@ -188,7 +188,7 @@ const CountryGraph: React.FC<CountryGraphProps> = ({ page_id }) => {
   return (
     <div
       className="space-y-4 w-full"
-      style={{ minHeight: '320px', maxWidth: '900px', margin: '0 auto' }}
+      style={{ minHeight: '300px', maxWidth: '900px', margin: '0 auto' }}
     >
       {isLoadingDemographics ? (
         <div className="flex justify-center items-center mt-4">
@@ -199,7 +199,7 @@ const CountryGraph: React.FC<CountryGraphProps> = ({ page_id }) => {
           Error al cargar las métricas: {errorDemographics?.message}
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={440}>
+        <ResponsiveContainer width="100%" height={405}>
           <PieChart>
             <text
               x="50%"
@@ -228,6 +228,7 @@ const CountryGraph: React.FC<CountryGraphProps> = ({ page_id }) => {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
+        
       )}
     </div>
   );

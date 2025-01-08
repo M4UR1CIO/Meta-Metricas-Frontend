@@ -150,13 +150,12 @@ const Reporte: React.FC<ReporteProps> = ({ selectedPage, theme }) => {
     }
 
     try {
-      setLoading(true);
+      
       setError(null);
 
       const hiddenGraphs = document.getElementById('hidden-graphs');
       if (!hiddenGraphs) {
         setError('Error interno: Contenedor de gráficos no encontrado.');
-        setLoading(false);
         return;
       }
 
