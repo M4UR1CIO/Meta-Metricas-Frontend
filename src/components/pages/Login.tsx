@@ -120,11 +120,11 @@ const Login: React.FC = () => {
           <p className="text-sm text-gray-500 mb-8 text-center">Porfavor ingrese sus datos</p>
           <form className="w-full space-y-6" onSubmit={handleSubmit}>
             <div className="relative">
-              <label className="block text-left mb-1 text-sm font-medium text-gray-600">Usuario</label>
+              <label className="block text-left mb-1 text-sm font-medium text-gray-700">Usuario:</label>
               <input
                 ref={usuarioRef}
                 type="text"
-                className="w-full px-4 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-800 transition-all"
+                className="w-full rounded-md px-4 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-800 transition-all"
                 placeholder="Nombre de Usuario"
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
@@ -133,12 +133,12 @@ const Login: React.FC = () => {
               />
             </div>
             <div className="relative">
-              <label className="block text-left mb-1 text-sm font-medium text-gray-600">Contraseña</label>
+              <label className="block text-left mb-1 text-sm font-medium text-gray-700">Contraseña:</label>
               <input
                 ref={contraseñaRef}
                 type={mostrarContraseña ? "text" : "password"}
-                className="w-full px-4 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-800 transition-all"
-                placeholder="********"
+                className="w-full rounded-md px-4 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-800 transition-all"
+                placeholder="Ingrese Contraseña"
                 value={contraseña}
                 onChange={(e) => setContraseña(e.target.value)}
                 onFocus={handleFocus}
@@ -147,12 +147,12 @@ const Login: React.FC = () => {
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute right-3 top-9 transform -translate-y-1/2 text-gray-500 hover:text-gray-800"
+                className="absolute right-3 top-11 transform -translate-y-1/2 text-gray-500 text-[17px] hover:text-gray-800 duration-300 ease-in-out transition-all"
               >
                 {mostrarContraseña ? <FiEyeOff /> : <FiEye />}
               </button>
             </div>
-            <button type="submit" className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all">
+            <button type="submit" className="w-full py-3 bg-black text-white text-[17px] rounded-lg hover:bg-gray-800 duration-300 ease-in-out transition-all">
               Ingresar
             </button>
             {mensajeError && <p className="text-red-500 text-sm mt-2 text-center">{mensajeError}</p>}

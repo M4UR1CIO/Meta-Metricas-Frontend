@@ -84,11 +84,11 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ onPlatformSelect, theme, sele
             className={`fixed md:relative md:top-0 md:left-0 h-screen w-[60%] sm:w-[30%] md:w-[220px] shadow-xl p-4 z-40 ${
               theme === 'dark'
                 ? 'bg-gradient-to-b from-purple-700 via-pink-700 to-blue-700 text-white'
-                : 'bg-gradient-to-b from-indigo-200 to-blue-300 text-gray-800'
+                : 'bg-gradient-to-b from-indigo-300 to-blue-300 text-gray-800'
             } flex flex-col justify-between`}
             style={{
-              borderTopRightRadius: '30px',
-              borderBottomRightRadius: '30px',
+              borderTopRightRadius: '20px',
+              borderBottomRightRadius: '20px',
               borderTopLeftRadius: '0',
               borderBottomLeftRadius: '0',
               transition: 'background-color 0.3s ease, color 0.3s ease',
